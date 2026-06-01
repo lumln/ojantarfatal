@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CSI - LUMLN</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<!-- ÁUDIOS -->
+
+<audio id="musicaMenu" src="audio/menu.mp3" loop></audio>
+
+<audio id="musicaInvestigacao" src="audio/investigacao.mp3" loop></audio>
+
+<audio id="somDescoberta" src="audio/descoberta.mp3"></audio>
+
+<audio id="somLaboratorio" src="audio/laboratorio.mp3"></audio>
+
+<audio id="somFinal" src="audio/final.mp3"></audio>
+
+<audio id="somChuva" src="audio/chuva.mp3" loop></audio>
+
+<audio id="somBatimentos" src="audio/batimentos.mp3"></audio>
+
+<audio id="somRadio" src="audio/radio.mp3"></audio>
+
+<audio id="somPapel" src="audio/papel.mp3"></audio>
+
+<audio id="somAlfinete" src="audio/alfinete.mp3"></audio>
+
+<!-- MENU -->
+
+<section id="menu" class="tela ativa">
+
+<div class="overlay"></div>
+
+<div class="conteudoMenu">
+
+<img
+src="imagens/logo.png"
+class="logoCriador"
+>
+
+<h1>CSI - LUMLN</h1>
+
+<h2>Caso 001 — O Jantar Fatal</h2>
+
+<p>
+Uma mansão.
+Uma tempestade.
+Um assassinato.
+</p>
+
+<button onclick="iniciarJogo()">
+
+INICIAR INVESTIGAÇÃO
+
+</button>
+
+</div>
+
+</section>
+
+<!-- JOGO -->
+
+<section id="jogo" class="tela">
+
+<header>
+
+<div>
+
+<h2>Mansão Almeida</h2>
+
+<p id="statusCaso">
+
+Investigue a cena do crime.
+
+</p>
+
+</div>
+
+<div id="hud">
+
+<h3>Inventário</h3>
+
+<ul id="inventario"></ul>
+
+</div>
+
+</header>
+
+<!-- MAPA -->
+
+<div id="mapa">
+
+<button onclick="abrirCena('hall')">
+
+Hall
+
+</button>
+
+<button onclick="abrirCena('jantar')">
+
+Sala de Jantar
+
+</button>
+
+<button onclick="abrirCena('salaestar')">
+
+Sala de Estar
+
+</button>
+
+<button onclick="abrirCena('escritorio')">
+
+Escritório
+
+</button>
+
+<button onclick="abrirCena('cozinha')">
+
+Cozinha
+
+</button>
+
+<button onclick="abrirCena('banheiro')">
+
+Banheiro
+
+</button>
+
+<button onclick="abrirCena('jardim')">
+
+Jardim
+
+</button>
+
+<button onclick="abrirCena('suite')">
+
+Suíte
+
+</button>
+
+<button onclick="abrirCena('quartolucas')">
+
+Quarto Lucas
+
+</button>
+
+<button onclick="abrirCena('hospedes')">
+
+Quarto Hóspedes
+
+</button>
+
+<button onclick="abrirLaboratorio()">
+
+Laboratório
+
+</button>
+
+<button onclick="abrirInterrogatorios()">
+
+Interrogatórios
+
+</button>
+
+<button onclick="abrirMural()">
+
+Mural
+
+</button>
+
+<button onclick="abrirAcusacao()">
+
+Acusação Final
+
+</button>
+
+</div>
+
+<!-- CENA -->
+
+<div id="cenaContainer">
+
+<img id="imagemCena" src="">
+
+<div id="hotspots"></div>
+
+</div>
+
+<div id="descricaoCena"></div>
+
+</section>
+
+<!-- INTERROGATÓRIOS -->
+
+<section
+id="interrogatorios"
+class="tela"
+>
+
+<h2>Interrogatórios</h2>
+
+<div class="suspeitos">
+
+<div
+class="suspeito"
+onclick="interrogar('helena')"
+>
+
+<img src="imagens/helena.png">
+
+<p>Helena Almeida</p>
+
+</div>
+
+<div
+class="suspeito"
+onclick="interrogar('lucas')"
+>
+
+<img src="imagens/lucas.png">
+
+<p>Lucas Almeida</p>
+
+</div>
+
+<div
+class="suspeito"
+onclick="interrogar('marcelo')"
+>
+
+<img src="imagens/marcelo.png">
+
+<p>Marcelo Torres</p>
+
+</div>
+
+<div
+class="suspeito"
+onclick="interrogar('marta')"
+>
+
+<img src="imagens/marta.png">
+
+<p>Marta</p>
+
+</div>
+
+</div>
+
+<div id="caixaDialogo">
+
+Selecione um suspeito.
+
+</div>
+
+<button onclick="voltarJogo()">
+
+VOLTAR
+
+</button>
+
+</section>
+
+<!-- MURAL -->
+
+<section id="mural" class="tela">
+
+<h2>Mural Investigativo</h2>
+
+<div id="muralConteudo"></div>
+
+<button onclick="voltarJogo()">
+
+VOLTAR
+
+</button>
+
+</section>
+
+<!-- LABORATÓRIO -->
+
+<section
+id="laboratorioTela"
+class="tela"
+>
+
+<h2>Laboratório Forense</h2>
+
+<div class="resultadoLab">
+
+<img
+src="imagens/ricardo.png"
+style="
+width:200px;
+display:block;
+margin:auto;
+margin-bottom:20px;
+"
+>
+
+<h3>Relatório Médico-Legal</h3>
+
+<p>
+
+A vítima morreu por envenenamento
+com cianeto.
+
+</p>
+
+</div>
+
+<button onclick="voltarJogo()">
+
+VOLTAR
+
+</button>
+
+</section>
+
+<!-- ACUSAÇÃO -->
+
+<section id="acusacao" class="tela">
+
+<h2>Acusação Final</h2>
+
+<label>Assassino</label>
+
+<select id="assassino">
+
+<option>Helena</option>
+
+<option>Lucas</option>
+
+<option>Marcelo</option>
+
+<option>Marta</option>
+
+</select>
+
+<label>Causa da morte</label>
+
+<select id="causa">
+
+<option>Envenenamento</option>
+
+<option>Asfixia</option>
+
+<option>Tiro</option>
+
+</select>
+
+<label>Motivação</label>
+
+<select id="motivacao">
+
+<option>Seguro milionário</option>
+
+<option>Herança</option>
+
+<option>Dívida</option>
+
+<option>Vingança</option>
+
+</select>
+
+<button onclick="confirmarAcusacao()">
+
+CONFIRMAR
+
+</button>
+
+<div id="resultadoFinal"></div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
